@@ -22,10 +22,6 @@ fn main() -> Result<()> {
     println!("Waiting for events in dir `{}`", &args.dir);
     let mut buf = [0u8; BUF_SIZE];
     loop {
-        // NOTE: should implement debounce correctly
-        // but this works for now
-        sleep(DEBOUNCE_DURATION);
-
         let count = read_events(&mut inotify, &mut buf)?;
 
         if count > 0 {
